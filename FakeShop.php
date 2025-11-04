@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+session_start();
+// Inicia la sesión para verificar si el usuario ha iniciado sesión,osea que muestre el nombre oo correo
+?>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -7,14 +11,18 @@
     <link rel="stylesheet" href="estilos/main.css">
 </head>
 <body>
+    <!-- dependiendo ,si tiene sesion muestra el nombre y en la esquina cerrar seesion,si no no cambia nada -->
+
     <header>
-        <img src="imagenes/logo.jpg" alt="Logo Fake Shop">
-        <h1>Fake Shop</h1>
-        <p>Tu creatividad, nuestra misión.</p>
-    <button class="btn-iniciarSesion" onclick="location.href='login.html'">
-        Iniciar Sesión / Crear Cuenta
-    </button>
-    </header>
+    <img src="imagenes/logo.jpg" alt="Logo Fake Shop" style="height:48px;vertical-align:middle;">
+
+    <?php if (isset($_SESSION['usuario'])): ?> 
+        <span style="margin-left:20px;">👋 Hola, <?php echo $_SESSION['usuario']; ?></span>
+        <a href="backend/cerrarSesion.php" style="margin-left:12px;">Cerrar sesión</a>
+    <?php else: ?>
+        <a href="login.html" style="margin-left:12px;">Iniciar sesión</a>
+    <?php endif; ?> 
+</header>
 
 
     <nav>

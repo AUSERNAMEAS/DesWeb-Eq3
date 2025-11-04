@@ -5,19 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Iniciar / Crear Cuenta - Fake Shop</title>
     <link rel="stylesheet" href="estilos/main.css">
-    <style>
-        /* estilos mínimos para integrarse con estilos/main.css */
-        .auth-container { max-width:900px;margin:40px auto;padding:20px;display:flex;gap:24px;flex-wrap:wrap; }
-        .auth-card { flex:1 1 380px;padding:20px;border-radius:8px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08); }
-        .auth-card h2 { margin-top:0; }
-        .form-group { margin-bottom:12px; display:flex;flex-direction:column; }
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="password"] { padding:8px;border:1px solid #ccc;border-radius:4px; }
-        .btn { display:inline-block;padding:10px 16px;border-radius:6px;background:#2b7cff;color:#fff;text-decoration:none;border:none;cursor:pointer; }
-        .muted { color:#666;font-size:0.9rem; }
-        @media(max-width:640px){ .auth-container{padding:12px} }
-    </style>
+    <link rel="stylesheet" href="estilos/login.css">
 </head>
 <body>
 
@@ -31,36 +19,38 @@
         <div class="auth-card" id="create-card">
             <h2>Crear Cuenta</h2>
             <p class="muted">Crea una cuenta para guardar pedidos y seguir tu historial.</p>
-            <form id="register-form">
+
+
+            <form id="register-form" action="backend/registro.php" method="POST">
                 <div class="form-group">
                     <label for="reg-name">Nombre completo</label>
-                    <input id="reg-name" type="text" required>
+                    <input id="reg-name" name="nombre" type="text" required>
                 </div>
-                <div class="form-group">
-                    <label for="reg-email">Correo electrónico</label>
-                    <input id="reg-email" type="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="reg-password">Contraseña</label>
-                    <input id="reg-password" type="password" required>
-                </div>
-                <button type="button" class="btn" onclick="alert('Aquí iría la lógica para crear cuenta')">Crear cuenta</button>
-            </form>
+        <div class="form-group">
+            <label for="reg-email">Correo electrónico</label>
+            <input id="reg-email" name="email" type="email" required>
         </div>
+        <div class="form-group">
+            <label for="reg-password">Contraseña</label>
+            <input id="reg-password" name="contrasenia" type="password" required>
+        </div>
+        <button type="submit" class="btn">Crear cuenta</button>
+    </form>
+
 
         <div class="auth-card" id="login-card">
             <h2>Iniciar Sesión</h2>
             <p class="muted">Accede con tu correo y contraseña.</p>
-            <form id="login-form">
+            <form id="login-form" action="backend/buscarCuenta.php" method="POST">
                 <div class="form-group">
                     <label for="login-email">Correo electrónico</label>
-                    <input id="login-email" type="email" required>
+                    <input id="login-email" name="email_iniciar" type="email" required>
                 </div>
                 <div class="form-group">
                     <label for="login-password">Contraseña</label>
-                    <input id="login-password" type="password" required>
+                    <input id="login-password" name="contrasenia_iniciar" type="password" required>
                 </div>
-                <button type="button" class="btn" onclick="alert('Aquí iría la lógica para iniciar sesión')">Iniciar</button>
+                <button type="submit" class="btn">Iniciar</button>
             </form>
         </div>
     </section>

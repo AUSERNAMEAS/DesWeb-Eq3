@@ -2,15 +2,19 @@ CREATE DATABASE Ventas
 
 create table cliente(
 id_cliente int primary key identity(1,1) not null,
-nombre nvarchar(20),
+nombre varchar(40) not null,
+contrasenia_hash varchar(250) not null,
 apellido char(20),
-correo char(40),
+correo char(40) unique not null,
 telefono char(10),
 direccion char(40),
 ciudad char(15),
 codigo_postal char(7),
 pais char(15),
-fecha_Compra date)
+fecha_Compra date,
+rol varchar(20) DEFAULT 'cliente')
+
+DROP DATABASE Ventas
 
 select * from cliente
 

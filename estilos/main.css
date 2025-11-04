@@ -8,11 +8,11 @@ body {
 header {
     background-color: #6a0dad; /* Morado oscuro */
     color: white;
-    padding: 1rem 2rem;
+    padding: 0.3rem 1rem; /* mucho más delgado */
     display: flex;
     align-items: center;
-    justify-content: space-between; /* <-- clave: separa izquierda y derecha */
-    gap: 1rem;
+    justify-content: space-between;
+    height: 45px; /* altura fija pequeña */
 }
 
 
