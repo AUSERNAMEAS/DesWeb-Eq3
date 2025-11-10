@@ -21,7 +21,7 @@ session_start();
         <a href="backend/cerrarSesion.php" style="margin-left:12px;">Cerrar sesión</a>
     <?php else: ?>
         <a href="login.html" style="margin-left:12px;">Iniciar sesión</a>
-    <?php endif; ?> 
+    <?php endif; ?> 25
 </header>
 
 

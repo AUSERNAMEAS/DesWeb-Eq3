@@ -23,12 +23,28 @@ if ($busqueda && sqlsrv_has_rows($busqueda))//si la consulta tiene filas true
         {
         // ✅ Login correcto → Guardar sesión
         $_SESSION['usuario'] = $email;
+        $_SESSION['rol'] = $fila['rol']; // Guardar saber si es admin o usuario normal
 
-        echo "<script>alert('✅ Bienvenido, $email'); window.location.href='../FakeShop.php';</script>";
+        // sql rellena los espacios que faltan con espacios en blanco, asi que hay que limpiarlo
+        //$rol_limpio = trim($fila['rol']);
+         $rol_limpio = 'admin'; //<- solo para pruebas
+
+
+        //verificar si es admin o usuario normal
+
+        if ($rol_limpio === 'admin') {
+            echo "<script>alert('✅ Bienvenido Administrador, $email'); window.location.href='../adminPanel.php';</script>";
+        } else {
+            echo "<script>alert('✅ Bienvenido, $email, Su rol es: $rol_limpio'); window.location.href='../FakeShop.php';</script>";
+        }
+
+    //este dice si la contraseña es incorrecta
     } else {
         echo "<script>alert('❌ Contraseña incorrecta o usuario incorrecto'); window.history.back();</script>";
     }
-} else {
+} 
+//aqui dice si no encontro el usuario
+else {
     echo "<script>alert('❌ Usuario no encontrado'); window.history.back();</script>";
 }
 // Cerrar conexión
