@@ -5,12 +5,8 @@ $connectionInfo = array(
     "UID" => "",            // usuario (vacío si usas autenticación de Windows)
     "PWD" => ""             // contraseña (vacía si usas autenticación de Windows)
 );
-
 $conexion = sqlsrv_connect($serverName, $connectionInfo);
-
 if (!$conexion) {
-    die("❌ Error al conectar: " . print_r(sqlsrv_errors(), true));
-} else {
-    echo "✅ Conexión exitosa a SQL Server";
+    die(" Error" . print_r(sqlsrv_errors(), true));
 }
 ?>

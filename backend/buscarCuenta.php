@@ -40,12 +40,12 @@ if ($busqueda && sqlsrv_has_rows($busqueda))//si la consulta tiene filas true
 
     //este dice si la contraseña es incorrecta
     } else {
-        echo "<script>alert('❌ Contraseña incorrecta o usuario incorrecto'); window.history.back();</script>";
+        echo "<script>alert(' Contraseña incorrecta o usuario incorrecto'); window.history.back();</script>";
     }
 } 
 //aqui dice si no encontro el usuario
 else {
-    echo "<script>alert('❌ Usuario no encontrado'); window.history.back();</script>";
+    echo "<script>alert(' Usuario no encontrado'); window.history.back();</script>";
 }
 // Cerrar conexión
 sqlsrv_close($conexion);

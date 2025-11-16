@@ -85,7 +85,7 @@ function decreaseQuantity(productId) {
     //si es true solo le resta
     if (item && item.quantity > 1) {
         item.quantity--;
-        renderCart();a
+        renderCart();
     } 
     
         //si es true lo quit
@@ -155,7 +155,8 @@ loadMoreBtn.addEventListener('click', () => {
 
 // te lleva al apartrado del checkout
 checkoutBtn.addEventListener('click', () => {
-    window.location.href = 'chekout.html';
+    sessionStorage.setItem('carritoTemporal', JSON.stringify(cart)); //gaurda el carrito en session storage
+    window.location.href = 'checkout.html';
 });
 
 // espera a que todo se cargue primero
