@@ -123,6 +123,95 @@ $admin_email = $_SESSION['usuario']; */
             </ul>
         </section>
 
+        <section id="products-manage">
+            <h2>Gestión de Productos</h2>
+
+            <h3>Stock de Productos Existentes</h3>
+            <div class="table-responsive">
+                <table id="product-stock-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Stock Actual</th>
+                            <th>Modificar Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Taza Jin</td>
+                            <td>$150.00</td>
+                            <td class="stock-value">50</td>
+                            <td>
+                                <button class="stock-btn decrease-stock">-</button>
+                                <button class="stock-btn increase-stock">+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Camisa Golden</td>
+                            <td>$250.00</td>
+                            <td class="stock-value">25</td>
+                            <td>
+                                <button class="stock-btn decrease-stock">-</button>
+                                <button class="stock-btn increase-stock">+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Suéter Navideño BTS</td>
+                            <td>$300.00</td>
+                            <td class="stock-value">10</td>
+                            <td>
+                                <button class="stock-btn decrease-stock">-</button>
+                                <button class="stock-btn increase-stock">+</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+
+            <hr style="margin: 2rem 0; border-color: #eee;">
+
+            <h3>Agregar Nuevo Producto</h3>
+            <form id="add-product-form" class="product-form-grid">
+                <div class="form-group">
+                    <label for="new-name">Nombre del Producto:</label>
+                    <input type="text" id="new-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-price">Precio (MXN):</label>
+                    <input type="number" id="new-price" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-stock">Stock Inicial:</label>
+                    <input type="number" id="new-stock" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-category">Categoría:</label>
+                    <input type="text" id="new-category" placeholder="Ej. Playera, Taza" required>
+                </div>
+                <div class="form-group full-row">
+                    <label for="new-description">Descripción:</label>
+                    <textarea id="new-description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="new-image">Imagen del Producto (URL o Archivo):</label>
+                    <input type="text" id="new-image" placeholder="ruta/o/url/imagen.jpg">
+                    </div>
+                <div class="form-group">
+                    <label for="new-weight">Peso (kg):</label>
+                    <input type="text" id="new-weight" placeholder="Ej. 0.5kg">
+                </div>
+
+                <div class="form-group full-row">
+                    <button type="submit" id="btn-add-product" class="btn-product-action">Añadir Producto</button>
+                </div>
+            </form>
+        </section>
+
     </div>
 
 </body>

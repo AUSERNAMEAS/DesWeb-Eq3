@@ -22,7 +22,19 @@ select * from cliente
 
 --update cliente set fecha_Compra= GETDATE() where id_cliente = 1;
 
---alter table cliente alter column telefono char(10)
+alter table cliente alter column nombre varchar(40) not null
+
+insert into cliente(nombre,correo,contrasenia_hash,rol) values ('cu','pelos@gmail.com', 'pelos1234', 'admin');
+
+delete from cliente where id_cliente = 14
+
+
+update cliente set rol = 'admin' where correo = 'pelos@gmail.com  '   
+
+SELECT correo, contrasenia_hash, rol 
+FROM cliente 
+WHERE correo = 'pelos@gmail.com';
+
 
 truncate table cliente
 
