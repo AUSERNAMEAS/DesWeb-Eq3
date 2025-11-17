@@ -6,7 +6,9 @@ $connectionInfo = array(
     "PWD" => ""             // contraseña (vacía si usas autenticación de Windows)
 );
 $conexion = sqlsrv_connect($serverName, $connectionInfo);
-if (!$conexion) {
-    die(" Error" . print_r(sqlsrv_errors(), true));
+if (!$conexion) 
+{
+    echo "Error al conectar a la base de datos: " . print_r(sqlsrv_errors(), true);
+    exit();
 }
-?>
+
