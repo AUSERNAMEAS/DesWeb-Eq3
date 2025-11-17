@@ -27,7 +27,7 @@ if ($busqueda && sqlsrv_has_rows($busqueda))//si la consulta tiene filas true
 
         // sql rellena los espacios que faltan con espacios en blanco, asi que hay que limpiarlo
         //$rol_limpio = trim($fila['rol']);
-         $rol_limpio = 'admin'; //<- solo para pruebas
+        $rol_limpio = 'admin'; //<- solo para pruebas
 
 
         //verificar si es admin o usuario normal

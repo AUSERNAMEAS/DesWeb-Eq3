@@ -34,6 +34,73 @@ function renderProducts() {
     }
 }
 
+async function enviarSolicitud(e) {
+    // Evita el envío del formulario por defecto
+    e.preventDefault();
+
+    const personalizedBtn = document.getElementById("btn-personalized");
+    const productType = document.getElementById('product-type').value;
+    const customImageInput = document.getElementById('custom-image');
+    const instructions = document.getElementById('instructions').value;
+
+    // Simulación: Obtener solo el nombre del archivo
+    const imageFileName = customImageInput.files.length > 0 ? customImageInput.files[0].name : '';
+    
+    // Validación mínima
+    if (!productType || !customImageInput.files.length) {
+        alert('Por favor, ingresa el tipo de producto y sube una imagen.');
+        return;
+    }
+
+    const requestData = {
+        productType: productType,
+        instructions: instructions,
+        imageFileName: imageFileName
+    };
+
+    // Actualización de la interfaz de usuario mientras procesa
+    personalizedBtn.textContent = 'Enviando...';
+    personalizedBtn.disabled = true;
+
+    try 
+{
+        const response = await fetch('backend/guardarSolicitud.php', 
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestData)
+        });
+
+        const result = await response.json();
+
+        if (result.success) 
+        {
+            alert(result.message);
+            // Limpiar el formulario
+            document.getElementById('product-type').value = '';
+            document.getElementById('instructions').value = '';
+            customImageInput.value = null; // Limpiar el input de tipo file
+        } 
+        else 
+        {
+            alert(`Error al enviar la solicitud: ${result.message}`);
+        }
+
+    } 
+
+    catch (error) 
+    {
+        alert('Error de conexión al servidor al intentar enviar la solicitud.');
+    } 
+
+    finally 
+    {
+        // Restaurar la interfaz de usuario
+        personalizedBtn.textContent = 'Enviar Solicitud de Personalización';
+        personalizedBtn.disabled = false;
+    }
+}
+
 async function fetchProducts(){
     try 
     {
@@ -167,5 +234,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCart();
     document.getElementById("btn-personalized").addEventListener('click',()=>{
         alert('su solicitud ha sido enviada');
+        enviarSolicitud(event);
     })
 });
