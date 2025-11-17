@@ -21,7 +21,7 @@ if ($busqueda && sqlsrv_has_rows($busqueda))//si la consulta tiene filas true
     // Verificar contraseña
     if (password_verify($contrasenia, $fila['contrasenia_hash']))//aqui compara la cntrase;a ingresada con la encriptada
         {
-        // ✅ Login correcto → Guardar sesión
+        // Login correcto → Guardar sesión
         $_SESSION['usuario'] = $email;
         $_SESSION['rol'] = $fila['rol']; // Guardar saber si es admin o usuario normal
 

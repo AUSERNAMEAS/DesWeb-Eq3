@@ -35,27 +35,15 @@ function renderProducts() {
 }
 
 async function fetchProducts(){
-    
-    try {
+    try 
+    {
         const response = await fetch('backend/backend.php');
         allProducts = await response.json();
+        console.log("RAW RESPONSE:", allProducts);
         renderProducts();
     } catch (error) {
         console.error('Error al cargar productos:', error);
     }
-   /*try {
-        const response = await fetch('backend/backend.php');
-        // ⬇⬇⬇ Agrega esto para ver qué está regresando PHP
-        const raw = await response.text();
-        console.log("RAW RESPONSE:", raw);
-
-        // Intentar parsear
-        allProducts = JSON.parse(raw);
-
-        renderProducts();
-    } catch (error) {
-        console.error('Error al cargar productos:', error);
-    }*/
 }
 
 /**

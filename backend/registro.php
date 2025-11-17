@@ -21,7 +21,7 @@ if ($busqueda) {
      session_start();
     $_SESSION['usuario'] = $email; //para guardar la sesion del usuario que se registro
 } else {
-    echo "❌ Error al registrar: " . print_r(sqlsrv_errors(), true);
+    echo " Error al registrar: " . print_r(sqlsrv_errors(), true);
 }
 
 // Cerrar conexión

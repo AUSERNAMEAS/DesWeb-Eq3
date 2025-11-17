@@ -7,13 +7,13 @@ include("conexion.php");
 // 1. Verificar sesión de usuario
 if (!isset($_SESSION['usuario'])) {
     http_response_code(401); 
-    echo json_encode(['success' => false, 'message' => 'Debe iniciar sesión.']);
+    echo json_encode(['success' => false, 'message' => 'Debe iniciar sesión.']);//manda este mensaje si no hay sesion
     sqlsrv_close($conexion);
     exit();
 }
 
-$email_cliente = trim($_SESSION['usuario']);
-$datos = json_decode(file_get_contents('php://input'), true);
+$email_cliente = trim($_SESSION['usuario']); //recupera el correo del cliente desde la sesión
+$datos = json_decode(file_get_contents('php://input'), true); //recibe los datos en formato json
 
 //para saber si llego la info
 if (empty($datos) || empty($datos['carrito'])) {
@@ -39,13 +39,14 @@ try {
                    OUTPUT INSERTED.id_pedido 
                    VALUES (?, GETDATE(), 'Pendiente', ?, ?)";
     
-    $params_pedido = array($id_cliente, $datos['metodo_pago'], (float)$datos['total_final']);
+    $params_pedido = array($id_cliente, $datos['metodo_pago'], (float)$datos['total_final']); //parametros para insertar en pedido
     $query_pedido = sqlsrv_query($conexion, $sql_pedido, $params_pedido);
     
     if (!$query_pedido || !sqlsrv_fetch($query_pedido)) //si sale mal o esta vacia avienta un error
     {
         throw new Exception("Error al insertar el pedido.");
     }
+    
     $id_pedido = sqlsrv_get_field($query_pedido, 0); //aqui busca el primer campo osea el id del pedido
 
     // 3. INSERTAR en 'detalle_pedido' y ACTUALIZAR 'producto' (Stock)
