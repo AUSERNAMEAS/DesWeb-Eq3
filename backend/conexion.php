@@ -1,5 +1,5 @@
 <?php
-$serverName = "LAPTOP\\SQLEXPRESS"; // <- cambia por tu nombre de servidor
+$serverName = "."; // <- cambia por tu nombre de servidor
 $connectionInfo = array(
     "Database" => "Ventas", // nombre de la base de datos en SQL Server
     "UID" => "",            // usuario (vacío si usas autenticación de Windows)

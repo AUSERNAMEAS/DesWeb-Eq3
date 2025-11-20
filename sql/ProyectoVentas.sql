@@ -132,3 +132,41 @@ foreign key (id_pedido) references pedido(id_pedido)
 select * from envio
 
 delete from envio
+
+SELECT SUM(total) AS MontoMes FROM pedido 
+                        WHERE MONTH(fecha_pedido) = MONTH(GETDATE()) 
+                        AND YEAR(fecha_pedido) = YEAR(GETDATE())
+
+						 -- Selecciona los 5 días de envío más recientes, contando los pedidos de cada día.
+        -- Se usa fecha_envio porque es la que se inserta en el momento de procesar el pedido.
+        SELECT TOP 5 
+            CONVERT(VARCHAR(10), fecha_envio, 120) AS FechaBase, 
+            COUNT(id_envio) AS Cantidad
+        FROM envio
+        -- Solo incluye registros que tienen una fecha de envío.
+        WHERE fecha_envio IS NOT NULL
+        GROUP BY fecha_envio
+        -- Muestra los más recientes primero.
+        ORDER BY fecha_envio DESC
+
+sELECT TOP 5
+            p.id_pedido,
+            CONVERT(VARCHAR(10), p.fecha_pedido, 120) AS FechaPedido,
+            p.total,
+            p.estado_pedido,
+            c.nombre AS NombreCliente
+        FROM pedido p
+        JOIN cliente c ON p.id_cliente = c.id_cliente
+        ORDER BY p.fecha_pedido DESC
+
+CREATE TABLE solicitud_personalizacion (
+    id_solicitud INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+    tipo_producto VARCHAR(50) NOT NULL,
+    instrucciones TEXT,
+    imagen_url VARCHAR(250),
+    fecha_solicitud DATETIME DEFAULT GETDATE(),
+    estado VARCHAR(20) DEFAULT 'Pendiente' -- (Pendiente, Revisado, Aprobado)
+);
+ALTER TABLE solicitud_personalizacion
+ADD imagen_nombre VARCHAR(150);
+select * from solicitud_personalizacion
