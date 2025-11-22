@@ -26,10 +26,10 @@ alter table cliente alter column nombre varchar(40) not null
 
 insert into cliente(nombre,correo,contrasenia_hash,rol) values ('cu','pelos@gmail.com', 'pelos1234', 'admin');
 
-delete from cliente where id_cliente = 14
+delete from cliente where id_cliente = 1
 
 
-update cliente set rol = 'admin' where correo = 'pelos@gmail.com  '   
+update cliente set rol = 'admin' where correo = 'admin@gmail.com '   
 
 SELECT correo, contrasenia_hash, rol 
 FROM cliente 
